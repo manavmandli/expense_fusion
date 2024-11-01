@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ExpenseIncome(Document):
+class APILog(Document):
 	pass

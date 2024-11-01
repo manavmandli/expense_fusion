@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-01 14:05:00.963349",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "timestamp",
+  "user",
+  "ip",
+  "function_name",
+  "module",
+  "arguments",
+  "kwarguments",
+  "result",
+  "exception",
+  "http_status_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "label": "Timestamp"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Read Only",
+   "label": "User"
+  },
+  {
+   "fieldname": "ip",
+   "fieldtype": "Read Only",
+   "label": "IP"
+  },
+  {
+   "fieldname": "function_name",
+   "fieldtype": "Read Only",
+   "label": "Function Name"
+  },
+  {
+   "fieldname": "module",
+   "fieldtype": "Read Only",
+   "label": "Module"
+  },
+  {
+   "fieldname": "arguments",
+   "fieldtype": "Long Text",
+   "label": "Arguments"
+  },
+  {
+   "fieldname": "kwarguments",
+   "fieldtype": "Long Text",
+   "label": "kwarguments"
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Code",
+   "label": "Result"
+  },
+  {
+   "fieldname": "exception",
+   "fieldtype": "Code",
+   "label": "Exception"
+  },
+  {
+   "fieldname": "http_status_code",
+   "fieldtype": "Read Only",
+   "label": "http_status_code"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-01 14:06:48.556878",
+ "modified_by": "Administrator",
+ "module": "Expense Fusion",
+ "name": "API Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
