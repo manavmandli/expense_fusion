@@ -23,16 +23,16 @@ class AccountModel(BaseModel):
 class IncomeModel(BaseModel):
     income_id: Optional[str] = None
     space: Optional[str] = None
-    account = Optional[str] = None
+    account: Optional[str] = None
     date: Optional[str] = None
-    amount = Optional[str] = None
+    amount: Optional[str] = None
     write_note: Optional[str] = None
 
 
 class ExpenseModel(BaseModel):
     expense_id: Optional[str] = None
     space: Optional[str] = None
-    account = Optional[str] = None
+    account: Optional[str] = None
     date: Optional[str] = None
-    amount = Optional[str] = None
+    amount: Optional[str] = None
     write_note: Optional[str] = None

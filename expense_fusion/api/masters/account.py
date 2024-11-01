@@ -5,13 +5,10 @@ from expense_fusion.api.models import AccountModel
 
 
 class Account:
-    def __init__(self) -> None:
-        self.user = frappe.session.user
-
     def get_account(self):
         accounts = remove_default_fields(
             frappe.get_all(
-                "Expense Account", filters={"owner": self.user}, fields=["*"]
+                "Expense Account", filters={"owner": frappe.session.user}, fields=["*"]
             )
         )
         frappe.response["message"] = "Account list retrieved successfully"
@@ -23,14 +20,14 @@ class Account:
                 doctype="Expense Account",
                 account_name=data.name,
                 amount=data.amount,
-                owner=self.user,
+                owner=frappe.session.user,
             )
         )
         account_doc.insert(ignore_permissions=True)
         frappe.response["message"] = f"{account_doc.name} Account created successfully"
 
     def update_account(self, data: AccountModel):
-        current_user = self.user
+        current_user = frappe.session.user
         frappe.set_user("Administrator")
         account_doc = frappe.get_doc("Expense Account", data.name)
         if data.amount is not None:
@@ -51,7 +48,8 @@ class Account:
 
     def delete_account(self, data: AccountModel):
         if not frappe.db.exists(
-            "Expense Account", filter={"owner": self.user, "account_name": data.name}
+            "Expense Account",
+            filter={"owner": frappe.session.user, "account_name": data.name},
         ):
             frappe.response["message"] = "Please Enter valid account name"
             return

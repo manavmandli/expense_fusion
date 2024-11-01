@@ -5,11 +5,8 @@ from expense_fusion.api.api_utils import remove_default_fields
 
 
 class Transaction:
-    def __init__(self) -> None:
-        self.user = frappe.session.user
-
     def get_transactions(self, space_filter=None, duration_filter=None):
-        filters = {"owner": self.user}
+        filters = {"owner": frappe.session.user}
         if space_filter:
             filters["space"] = space_filter
         if duration_filter:

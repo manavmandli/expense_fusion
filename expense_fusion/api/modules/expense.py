@@ -4,9 +4,6 @@ from expense_fusion.api.models import ExpenseModel
 
 
 class Expense:
-    def __init__(self) -> None:
-        self.user = frappe.session.user
-
     def create_expense(self, data: ExpenseModel):
         expense_doc = frappe.get_doc(
             dict(
@@ -16,7 +13,7 @@ class Expense:
                 date=data.date,
                 amount=data.amount,
                 write_note=data.write_note,
-                owner=self.user,
+                owner=frappe.session.user,
             )
         )
         expense_doc.insert(ignore_permissions=True)
@@ -36,7 +33,7 @@ class Expense:
 
     def delete_expense(self, data: ExpenseModel):
         if not frappe.db.exists(
-            "Expense", filter={"owner": self.user, "name": data.expense_id}
+            "Expense", filter={"owner": frappe.session.user, "name": data.expense_id}
         ):
             frappe.response["message"] = "Please Enter valid Transaction id"
             return

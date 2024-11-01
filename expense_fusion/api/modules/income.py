@@ -4,9 +4,6 @@ from expense_fusion.api.models import IncomeModel
 
 
 class Income:
-    def __init__(self) -> None:
-        self.user = frappe.session.user
-
     def create_income(self, data: IncomeModel):
         income_doc = frappe.get_doc(
             dict(
@@ -16,7 +13,7 @@ class Income:
                 date=data.date,
                 amount=data.amount,
                 write_note=data.write_note,
-                owner=self.user,
+                owner=frappe.session.user,
             )
         )
         income_doc.insert(ignore_permissions=True)
@@ -36,7 +33,7 @@ class Income:
 
     def delete_income(self, data: IncomeModel):
         if not frappe.db.exists(
-            "Income", filter={"owner": self.user, "name": data.income_id}
+            "Income", filter={"owner": frappe.session.user, "name": data.income_id}
         ):
             frappe.response["message"] = "Please Enter valid Transaction id"
             return
