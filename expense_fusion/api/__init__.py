@@ -36,7 +36,7 @@ endpoints = {
     },
     "update_space": {
         "methods": {"PUT"},
-        "function": Space().delete_space,
+        "function": Space().update_space,
         "model": SpaceModel,
         "allow_guest": False,
     },

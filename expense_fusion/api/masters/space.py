@@ -11,7 +11,7 @@ class Space:
                 "Expense Space", filters={"owner": frappe.session.user}, fields=["*"]
             )
         )
-        frappe.response["message"] = "Space list retrieved successfully"
+        frappe.response["message"] = "Space list get successfully"
         return spaces
 
     def create_space(self, data: SpaceModel):
@@ -27,22 +27,18 @@ class Space:
 
     def update_space(self, data: SpaceModel):
         space_doc = frappe.get_doc("Expense Space", data.name)
-        current_user = frappe.session.user
-        frappe.set_user("Administrator")
         frappe.rename_doc(
             "Expense Space", data.name, data.new_name, force=True, ignore_if_exists=True
         )
-        frappe.set_user(current_user)
-        frappe.db.commit()
         frappe.response["message"] = f"{space_doc.name} Space updated successfully"
 
     def delete_space(self, data: SpaceModel):
         if not frappe.db.exists(
             "Expense Space",
-            filter={"owner": frappe.session.user, "space_name": data.name},
+            {"owner": frappe.session.user, "space_name": data.name},
         ):
-            frappe.response["message"] = "Please Enter valid space name"
+            frappe.response["message"] = "Please enter a valid space name"
             return
 
-        frappe.delete_doc("Expense Space", data.name, force=1)
+        frappe.delete_doc("Expense Space", data.name)
         frappe.response["message"] = f"{data.name} Space deleted successfully"

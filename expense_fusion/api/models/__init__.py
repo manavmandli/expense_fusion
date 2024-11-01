@@ -15,9 +15,9 @@ class SpaceModel(BaseModel):
 
 
 class AccountModel(BaseModel):
-    name: str
-    new_name: str
-    amount: Optional[str] = None
+    name: Optional[str] = None
+    new_name: Optional[str] = None
+    amount: Optional[int] = None
 
 
 class IncomeModel(BaseModel):
