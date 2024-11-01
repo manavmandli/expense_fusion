@@ -8,9 +8,17 @@ from frappe.model.document import Document
 
 class Expense(Document):
     def after_insert(self):
-        self.update_account()
+        self.update_account(update=True)
 
-    def update_account(self):
-        account_doc = frappe.get_doc("Expense Account", self.account)
-        account_doc.amount = flt(account_doc.amount) - flt(self.amount)
-        account_doc.save()
+    def on_trash(self):
+        self.update_account(update=False)
+
+    def update_account(self, update):
+        if update:
+            account_doc = frappe.get_doc("Expense Account", self.account)
+            account_doc.amount = flt(account_doc.amount) - flt(self.amount)
+            account_doc.save()
+        else:
+            account_doc = frappe.get_doc("Expense Account", self.account)
+            account_doc.amount = flt(account_doc.amount) + flt(self.amount)
+            account_doc.save()

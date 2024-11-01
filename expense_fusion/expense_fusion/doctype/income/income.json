@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "account",
+  "space",
   "date",
   "amount",
   "write_note"
@@ -38,11 +39,19 @@
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Write Note"
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Space",
+   "options": "Expense Space",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-01 11:46:28.411549",
+ "modified": "2024-11-01 20:04:00.043410",
  "modified_by": "Administrator",
  "module": "Expense Fusion",
  "name": "Income",

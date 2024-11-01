@@ -12,6 +12,7 @@ class Expense:
             dict(
                 doctype="Expense",
                 account=data.account,
+                space=data.space,
                 date=data.date,
                 amount=data.amount,
                 write_note=data.write_note,
@@ -19,23 +20,27 @@ class Expense:
             )
         )
         expense_doc.insert(ignore_permissions=True)
-        frappe.response["message"] = f"{expense_doc.name} Expense created successfully"
+        frappe.response["message"] = "Transaction created successfully"
+        frappe.response["ID"] = f"{expense_doc.name}"
 
     def update_expense(self, data: ExpenseModel):
         expense_doc = frappe.get_doc("Expense", data.expense_id)
         expense_doc.account = data.account
+        expense_doc.space = data.space
         expense_doc.date = data.date
         expense_doc.amount = data.amount
         expense_doc.write_note = data.write_note
         expense_doc.save(ignore_permissions=True)
-        frappe.response["message"] = f"{expense_doc.name} Expense updated successfully"
+        frappe.response["message"] = "Transaction updated successfully"
+        frappe.response["ID"] = f"{expense_doc.name}"
 
     def delete_expense(self, data: ExpenseModel):
         if not frappe.db.exists(
             "Expense", filter={"owner": self.user, "name": data.expense_id}
         ):
-            frappe.response["message"] = "Please Enter valid expense id"
+            frappe.response["message"] = "Please Enter valid Transaction id"
             return
 
         frappe.delete_doc("Expense", data.expense_id, force=1)
-        frappe.response["message"] = f"{data.expense_id} Expense deleted successfully"
+        frappe.response["message"] = "Transaction deleted successfully"
+        frappe.response["ID"] = f"{data.expense_id}"

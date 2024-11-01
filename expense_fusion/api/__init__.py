@@ -1,7 +1,7 @@
 import frappe
 from expense_fusion.api.auth import Auth
 from expense_fusion.api.masters import Space, Account
-from expense_fusion.api.modules import log, Income, Expense
+from expense_fusion.api.modules import log, Income, Expense, Transaction
 from expense_fusion.api.models import (
     UserModel,
     SpaceModel,
@@ -106,6 +106,12 @@ endpoints = {
         "methods": {"DELETE"},
         "function": Expense().delete_expense,
         "model": ExpenseModel,
+        "allow_guest": False,
+    },
+    # Transaction End Points
+    "get_transactions": {
+        "methods": {"GET"},
+        "function": Transaction().get_transactions,
         "allow_guest": False,
     },
 }
