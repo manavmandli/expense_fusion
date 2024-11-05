@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "EA.#####",
  "creation": "2024-10-30 12:49:58.768025",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -26,10 +27,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-30 14:56:10.420872",
+ "modified": "2024-11-05 10:32:13.365989",
  "modified_by": "Administrator",
  "module": "Expense Fusion",
  "name": "Expense Account",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,0 +1,78 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"uEO45K3yey\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Expense Fusion</span>\",\"col\":12}},{\"id\":\"EYcpySDCHW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User List\",\"col\":4}},{\"id\":\"DW5OE5zJFd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Space\",\"col\":4}},{\"id\":\"T8v5YcgLwt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Account\",\"col\":4}},{\"id\":\"zF0jeEaY46\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense List\",\"col\":6}},{\"id\":\"4TN5eYwoRW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Income List\",\"col\":6}},{\"id\":\"kJhMyepTqh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"API Log\",\"col\":3}}]",
+ "creation": "2024-11-03 19:45:44.297796",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "expenses",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Expense Fusion",
+ "links": [],
+ "modified": "2024-11-03 19:55:58.858957",
+ "modified_by": "Administrator",
+ "module": "Expense Fusion",
+ "name": "Expense Fusion",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User List",
+   "link_to": "User",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Space",
+   "link_to": "Expense Space",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "API Log",
+   "link_to": "API Log",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Account",
+   "link_to": "Expense Account",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Expense List",
+   "link_to": "Expense",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Income List",
+   "link_to": "Income",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Expense Fusion"
+}
