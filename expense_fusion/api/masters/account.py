@@ -15,18 +15,33 @@ class Account:
         return accounts
 
     def create_account(self, data: AccountModel):
+        if not data.name:
+            frappe.response["message"] = "The 'account name' field is required."
+            return
+        if not data.space:
+            frappe.response["message"] = "The 'space' field is required."
+            return
+        if data.amount is None:
+            frappe.response["message"] = "The 'amount' field is required."
+            return
+
         if frappe.db.exists(
             "Expense Account",
-            {"owner": frappe.session.user, "account_name": data.name},
+            {
+                "owner": frappe.session.user,
+                "account_name": data.name,
+                "space": data.space,
+            },
         ):
             frappe.response["message"] = (
-                f"{data.name} Already exists please enter unique name"
+                f"{data.name} Already exists please enter unique name or add in another space"
             )
             return
         account_doc = frappe.get_doc(
             dict(
                 doctype="Expense Account",
                 account_name=data.name,
+                space=data.space,
                 amount=data.amount,
                 owner=frappe.session.user,
             )
@@ -37,27 +52,48 @@ class Account:
     def update_account(self, data: AccountModel):
         if frappe.db.exists(
             "Expense Account",
-            {"owner": frappe.session.user, "account_name": data.new_name},
+            {
+                "owner": frappe.session.user,
+                "account_name": data.new_name,
+                "space": data.space,
+            },
         ):
             frappe.response["message"] = (
-                f"{data.new_name} Already exists please enter unique name"
+                f"{data.new_name} Already exists please enter unique name or add in another space"
             )
             return
-        account_doc = frappe.get_doc("Expense Account", {"account_name": data.name})
+        account_doc = frappe.get_doc(
+            "Expense Account", {"account_name": data.name, "space": data.space}
+        )
         account_doc.account_name = data.new_name
+        account_doc.space = data.space
         account_doc.amount = data.amount
         account_doc.save(ignore_permissions=True)
         frappe.response["message"] = f"{account_doc.name} Account updated successfully"
 
     def delete_account(self, data: AccountModel):
-        account_exists = frappe.db.exists(
+        if not data.name:
+            frappe.response["message"] = "The 'account name' field is required."
+            return
+        if not data.space:
+            frappe.response["message"] = "The 'space' field is required."
+            return
+        account_name = frappe.db.get_value(
             "Expense Account",
-            {"owner": frappe.session.user, "account_name": data.name},
+            {
+                "owner": frappe.session.user,
+                "account_name": data.name,
+                "space": data.space,
+            },
+            "name",
         )
 
-        if not account_exists:
-            frappe.response["message"] = "Please enter a valid account name."
+        if not account_name:
+            frappe.response["message"] = (
+                f"Account does not exist in the space '{data.space}'."
+            )
             return
 
-        frappe.delete_doc("Expense Account", account_exists, force=1)
-        frappe.response["message"] = f"{data.name} account deleted successfully."
+        account_doc = frappe.get_doc("Expense Account", account_name)
+        frappe.delete_doc("Expense Account", account_doc.name, force=1)
+        frappe.response["message"] = f"'{data.name}' account deleted successfully."

@@ -5,11 +5,16 @@ from expense_fusion.api.models import ExpenseModel
 
 class Expense:
     def create_expense(self, data: ExpenseModel):
+        if not data.account:
+            frappe.response["message"] = "The 'account name' field is required."
+            return
+        if not data.amount:
+            frappe.response["message"] = "The 'amount' field is required."
+            return
         expense_doc = frappe.get_doc(
             dict(
                 doctype="Expense",
                 account=data.account,
-                space=data.space,
                 date=data.date,
                 amount=data.amount,
                 write_note=data.write_note,
@@ -21,9 +26,11 @@ class Expense:
         frappe.response["ID"] = f"{expense_doc.name}"
 
     def update_expense(self, data: ExpenseModel):
+        if not data.expense_id:
+            frappe.response["message"] = "The 'expense_id' field is required."
+            return
         expense_doc = frappe.get_doc("Expense", data.expense_id)
         expense_doc.account = data.account
-        expense_doc.space = data.space
         expense_doc.date = data.date
         expense_doc.amount = data.amount
         expense_doc.write_note = data.write_note
@@ -32,8 +39,11 @@ class Expense:
         frappe.response["ID"] = f"{expense_doc.name}"
 
     def delete_expense(self, data: ExpenseModel):
+        if not data.expense_id:
+            frappe.response["message"] = "The 'expense_id' field is required."
+            return
         if not frappe.db.exists(
-            "Expense", filter={"owner": frappe.session.user, "name": data.expense_id}
+            "Expense", {"owner": frappe.session.user, "name": data.expense_id}
         ):
             frappe.response["message"] = "Please Enter valid Transaction id"
             return

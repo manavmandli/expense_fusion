@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "IN.#####",
+ "autoname": "IN.YY.#####",
  "creation": "2024-10-30 14:57:19.587008",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -41,17 +41,17 @@
    "label": "Write Note"
   },
   {
+   "fetch_from": "account.space",
    "fieldname": "space",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Space",
-   "options": "Expense Space",
-   "reqd": 1
+   "options": "Expense Space"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-01 20:04:00.043410",
+ "modified": "2024-11-08 17:05:24.501491",
  "modified_by": "Administrator",
  "module": "Expense Fusion",
  "name": "Income",

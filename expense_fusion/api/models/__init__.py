@@ -17,22 +17,26 @@ class SpaceModel(BaseModel):
 class AccountModel(BaseModel):
     name: Optional[str] = None
     new_name: Optional[str] = None
+    space: Optional[str] = None
     amount: Optional[int] = None
 
 
 class IncomeModel(BaseModel):
     income_id: Optional[str] = None
-    space: Optional[str] = None
     account: Optional[str] = None
     date: Optional[str] = None
-    amount: Optional[str] = None
+    amount: Optional[int] = None
     write_note: Optional[str] = None
 
 
 class ExpenseModel(BaseModel):
     expense_id: Optional[str] = None
-    space: Optional[str] = None
     account: Optional[str] = None
     date: Optional[str] = None
-    amount: Optional[str] = None
+    amount: Optional[int] = None
     write_note: Optional[str] = None
+
+
+class TransactionModel(BaseModel):
+    space_filter: Optional[str] = None
+    duration_filter: Optional[str] = None

@@ -41,17 +41,17 @@
    "label": "Write Note"
   },
   {
+   "fetch_from": "account.space",
    "fieldname": "space",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Space",
-   "options": "Expense Space",
-   "reqd": 1
+   "options": "Expense Space"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-01 20:04:32.756409",
+ "modified": "2024-11-08 16:58:01.847537",
  "modified_by": "Administrator",
  "module": "Expense Fusion",
  "name": "Expense",

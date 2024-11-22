@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "account_name",
+  "space",
   "amount"
  ],
  "fields": [
@@ -23,11 +24,19 @@
    "in_list_view": 1,
    "label": "Amount",
    "reqd": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Space",
+   "options": "Expense Space",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-05 10:32:13.365989",
+ "modified": "2024-11-08 15:10:09.552593",
  "modified_by": "Administrator",
  "module": "Expense Fusion",
  "name": "Expense Account",
@@ -47,7 +56,10 @@
    "write": 1
   }
  ],
+ "search_fields": "account_name",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "account_name"
 }

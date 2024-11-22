@@ -8,6 +8,7 @@ from expense_fusion.api.models import (
     AccountModel,
     IncomeModel,
     ExpenseModel,
+    TransactionModel,
 )
 from bs4 import BeautifulSoup
 
@@ -112,6 +113,7 @@ endpoints = {
     "get_transactions": {
         "methods": {"GET"},
         "function": Transaction().get_transactions,
+        "model": TransactionModel,
         "allow_guest": False,
     },
 }
@@ -182,7 +184,7 @@ def v1(type: str, data: dict | None = None, **kwargs):
 def gen_response(status, message, data=None):
     frappe.response["http_status_code"] = status
     if status == 500:
-        frappe.response["message"] = BeautifulSoup(str(message)).get_text()
+        frappe.response["message"] = BeautifulSoup(str(message),features="lxml").get_text()
     else:
         frappe.response["message"] = message
     if data is not None:
